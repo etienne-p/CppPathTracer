@@ -1,0 +1,10 @@
+mesh sphere dielectric
+0 0 -1 .5 1
+
+mesh sphere lambertian
+0 -100.5 -1 100 0 1 .0
+-1 0 -1 0.5 .1 .2 .5
+
+mesh sphere metal
+1 0 -1 .5 .8 .6 .2 .3
+
