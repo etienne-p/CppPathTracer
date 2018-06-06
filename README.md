@@ -1,5 +1,7 @@
 # CppPathTracer
 
+*Disclaimer: This is a work in progress*
+
 ## Introduction
 
 This is a toy path tracer initially based on Peter Shirley's ebook [Ray Tracing in One Weekend](https://www.amazon.ca/Ray-Tracing-Weekend-Minibooks-Book-ebook/dp/B01B5AODD8). This is an educational project meant to give me an opportunity to learn about path tracing and modern C++, and is nowhere close to being a production renderer.
