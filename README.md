@@ -10,7 +10,7 @@ The goal here is to lay the bases of a (reasonably) performant and extendable pa
 
 ## Usage
 
-### Running The App
+#### Running The App
 
 The app is meant to be used as a command line tool, rendering an image based on the argument provided, namely:
 - ```-x``` output image width
@@ -19,15 +19,13 @@ The app is meant to be used as a command line tool, rendering an image based on 
 - ```-d``` maximal depth (max number of times a ray may be reflected / refracted)
 - ```-f``` scene description file
 
-### Scene Description File
+#### Scene Description File
 
 The scene is described in an external text file. It contains geometric and shading data for each mesh. A ```Mesh``` has a **geometric primitive type** and a **material type**. It holds two buffers, one for geometric data, the other for shading data. Obviously, the number of elements in these buffers have to match.
 
 The scene file is structured in the following way:
 - mesh header: ```mesh [primitive type] [material type]``` ex: ```mesh sphere lambertian```.
-- followed by data for every mesh element: ```[primitive data] [material data]```, ex: ```0 -100.5 -1 100 0 1 0
-``` (sphere centered at (0 -100.5 -1) of radius 100, material albedo is (0, 1, 0))
-
+- followed by data for every mesh element: ```[primitive data] [material data]```, ex: ```0 -100.5 -1 100 0 1 0``` (sphere centered at (0 -100.5 -1) of radius 100, material albedo is (0, 1, 0)).
 
 ## Current Architecture
 
