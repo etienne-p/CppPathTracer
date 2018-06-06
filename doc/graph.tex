@@ -1,0 +1,60 @@
+\documentclass{letter}
+
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{fit}
+\usetikzlibrary{shapes,arrows}
+
+\begin{document}
+\pagestyle{empty}
+
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=6.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=gray!10, 
+    text width=6em, text centered, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+    
+\begin{tikzpicture}[node distance = 3cm, auto]
+    % Place nodes
+    \node [block] (init) {initialize rays based on camera};
+	\node [block, below of=init] (test) {test rays against scene geometry};
+	\node [block, below of=test] (group) { fill shading buffers based on materials hit, one buffer per material type };
+	\node [block, right of=test, node distance=6cm](skybox) { skybox shading};
+
+	\node [block, below of=group] (lambertian) {lambertian shading};
+	\node [block, left of= lambertian] (metal) {metal shading};
+	\node [block, right of= lambertian] (dielectric) {dielectric shading}; 
+
+	\node [block, below of=metal] (merge) {merge refracted - reflected rays};
+	\node [block, below of=dielectric] (absorbed) { absorbed rays };
+	\node [block, below of=lambertian, node distance=6cm] (image) { pixel buffer };
+	
+    % Draw edges
+    \path [line] (init) -- (test);
+	\path [line] (test) -- node {hit} (group);
+	\path [line] (test) --  node {no hit} (skybox);
+
+	\path [line] (group) -- (lambertian);
+	\path [line] (group) -- (metal);
+	\path [line] (group) -- (dielectric);
+			
+	\path [line] (metal.south) -- (absorbed.north);
+	\path [line] (lambertian.south) -- (absorbed.north);
+	\path [line] (dielectric.south) -- (absorbed.north);
+	
+	\path [line] (metal.south) -- (merge.north);
+	\path [line] (lambertian.south) -- (merge.north);
+	\path [line] (dielectric.south) -- (merge.north);
+	
+	\path [line] (merge.west) -- +(-0.5, 0) -- +(-0.5, 2) |- (test.west);
+	
+	\path [line] (merge.south) -- (image.north);
+	\path [line] (absorbed.south) -- (image.north);
+	\path [line] (skybox.south) |- (image.east);
+	
+\end{tikzpicture}
+
+
+\end{document}
