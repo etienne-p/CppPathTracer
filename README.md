@@ -38,7 +38,7 @@ We use distinct structs for geometric primitives (spheres, ...) and materials (l
 Instead of using a straightforward explicit recursion for ray propagation, we use ping pong ray buffers. It lets us batch hit detection and shading operations, and will lead in better performance as the tool gets more complete and scenes grow in complexity.
 
 Data flow is described in the graph below:
-![flow chart](./doc/graph-1.png)
+![flow chart](./doc/graph.png)
 
 ## Next In Line Features
 - Support more geometric primitives, such as triangles.
